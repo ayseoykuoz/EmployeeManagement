@@ -60,5 +60,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 window.addEventListener('language-changed', () => {
-  console.log(`Language changed to ${currentLanguage}`);
 });

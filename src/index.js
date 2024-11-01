@@ -1,4 +1,4 @@
-console.log('index.js loaded');
+
 import {initRouter} from './router/router.js';
 
 document.addEventListener('DOMContentLoaded', () => {
