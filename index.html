@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Management App</title>
+  <script type="module" src="/src/index.js"></script>
+</head>
+<body>
+  <style>
+    :root {
+      --primary-color: #ff6200;
+      --primary-blue-color: #172b53;
+      --primary-hover-color: #ff7a33;
+      --not-active-color: #f4b88e;
+      --text-color: #666666;
+      --text-black: #000000;
+      --text-white: #ffffffff;
+      --background-color: #f8f8f8;
+      --border-color: #eeeeee;
+      --font-family: Arial, sans-serif;
+    }
+  
+    html,
+    body {
+      background-color: var(--background-color);
+      color: var(--text-color);
+      font-family: var(--font-family);
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-size: 12px;
+    }
+  
+    #app {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--background-color);
+    }
+  </style>
+  
+  <div id="app"></div>
+</body>
+</html>
