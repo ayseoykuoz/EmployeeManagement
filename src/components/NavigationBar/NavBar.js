@@ -1,17 +1,17 @@
-import {LitElement, html} from 'lit';
+import { LitElement, html } from 'lit';
 import navBarStyles from './navBarStyles.js';
-import {t, toggleLanguage} from '../../localization/localization.js';
+import { t, toggleLanguage } from '../../localization/localization.js';
 
 export class NavBar extends LitElement {
   static properties = {
-    currentLanguage: {type: String},
+    currentLanguage: { type: String },
   };
 
   static styles = [navBarStyles];
 
   constructor() {
     super();
-    this.currentLanguage = 'en';
+    this.currentLanguage = localStorage.getItem('appLanguage') || 'en';
     this._handleLanguageChange = this._handleLanguageChange.bind(this);
   }
 
@@ -28,14 +28,17 @@ export class NavBar extends LitElement {
     );
   }
 
+ 
   _handleLanguageChange(event) {
     this.currentLanguage = event.detail.language;
     this.requestUpdate();
   }
 
+
   _isActive(page) {
     return window.location.pathname === page;
   }
+
 
   _handleNavigation(event, path) {
     event.preventDefault();
@@ -43,14 +46,29 @@ export class NavBar extends LitElement {
     window.dispatchEvent(new Event('popstate'));
   }
 
+
   _handleToggleLanguage() {
     toggleLanguage();
-    const newLanguage = this.currentLanguage === 'en' ? 'tr' : 'en';
-    document.dispatchEvent(
-      new CustomEvent('language-changed', {
-        detail: {language: newLanguage},
-      })
-    );
+  }
+
+ 
+  _getFlagUrl() {
+    if (this.currentLanguage === 'en') {
+      return 'https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg';
+    } else if (this.currentLanguage === 'tr') {
+      return 'https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg';
+    }
+    return 'https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg';
+  }
+
+
+  _getFlagAlt() {
+    if (this.currentLanguage === 'en') {
+      return 'English';
+    } else if (this.currentLanguage === 'tr') {
+      return 'Türkçe';
+    }
+    return 'English';
   }
 
   render() {
@@ -75,7 +93,7 @@ export class NavBar extends LitElement {
           <div class="right-section">
             <a
               href="/"
-              class="nav-item ${this._isActive('/') ? '' : 'active'}"
+              class="nav-item ${this._isActive('/') ? 'active' : ''}"
               @click="${(e) => this._handleNavigation(e, '/')}"
             >
               <svg viewBox="0 0 24 24" fill="currentColor">
@@ -88,10 +106,7 @@ export class NavBar extends LitElement {
 
             <a
               href="/add"
-              class="nav-item ${this._isActive('/add') ||
-              this._isActive('/edit')
-                ? ''
-                : 'active'}"
+              class="nav-item ${this._isActive('/add') || this._isActive('/edit') ? 'active' : ''}"
               @click="${(e) => this._handleNavigation(e, '/add')}"
             >
               <svg
@@ -108,13 +123,12 @@ export class NavBar extends LitElement {
             <div
               class="language-selector"
               @click="${this._handleToggleLanguage}"
+              title="${this.currentLanguage === 'en' ? 'Türkçe' : 'English'}"
             >
               <img
-                alt="${this.currentLanguage === 'en' ? 'TR' : 'UK'}"
+                alt="${this._getFlagAlt()}"
                 class="flag-icon"
-                src="${this.currentLanguage === 'en'
-                  ? "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Cpath fill='%23E30A17' d='M0 0h1200v800H0z'/%3E%3Ccircle cx='425' cy='400' r='200' fill='white'/%3E%3Ccircle cx='475' cy='400' r='160' fill='%23E30A17'/%3E%3C/svg%3E"
-                  : 'https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg'}"
+                src="${this._getFlagUrl()}"
               />
             </div>
           </div>
