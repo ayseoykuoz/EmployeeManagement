@@ -1,9 +1,9 @@
-import {css} from 'lit';
+import { css } from "lit";
 
 export default css`
   :host {
     display: block;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
       Roboto, sans-serif;
     background-color: #f8f9fa;
     --primary-color: #ff6200;
@@ -245,7 +245,7 @@ export default css`
   }
 
   .checkbox:checked::after {
-    content: '✓';
+    content: "✓";
     color: white;
     position: absolute;
     font-size: 12px;

@@ -1,28 +1,28 @@
-import {LitElement, html} from 'lit';
-import {store, addEmployee, editEmployee} from '../../state/store.js';
-import employeeFormStyles from './employeeFormStyles.js';
-import {validateField} from '../../utils/validationUtils.js';
-import {t} from '../../localization/localization.js';
+import { LitElement, html } from "lit";
+import { store, addEmployee, editEmployee } from "../../state/store.js";
+import employeeFormStyles from "./employeeFormStyles.js";
+import { validateField } from "../../utils/validationUtils.js";
+import { t } from "../../localization/localization.js";
 
 class EmployeeForm extends LitElement {
   static properties = {
-    employee: {type: Object},
-    isEditing: {type: Boolean},
-    errorMessages: {type: Object},
+    employee: { type: Object },
+    isEditing: { type: Boolean },
+    errorMessages: { type: Object },
   };
 
   constructor() {
     super();
     this.employee = {
       id: null,
-      firstName: '',
-      lastName: '',
-      dateOfEmployment: '',
-      dateOfBirth: '',
-      phone: '', // Combined field for country code and number
-      email: '',
-      department: 'Analytics',
-      position: 'Junior',
+      firstName: "",
+      lastName: "",
+      dateOfEmployment: "",
+      dateOfBirth: "",
+      phone: "",
+      email: "",
+      department: "Analytics",
+      position: "Junior",
     };
     this.isEditing = false;
     this.errorMessages = {};
@@ -31,14 +31,14 @@ class EmployeeForm extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this._loadEmployeeFromPath();
-    window.addEventListener('popstate', this._loadEmployeeFromPath);
-    document.addEventListener('language-changed', this._updateLocalization);
+    window.addEventListener("popstate", this._loadEmployeeFromPath);
+    document.addEventListener("language-changed", this._updateLocalization);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    window.removeEventListener('popstate', this._loadEmployeeFromPath);
-    document.removeEventListener('language-changed', this._updateLocalization);
+    window.removeEventListener("popstate", this._loadEmployeeFromPath);
+    document.removeEventListener("language-changed", this._updateLocalization);
   }
 
   _updateLocalization = () => {
@@ -55,20 +55,20 @@ class EmployeeForm extends LitElement {
         .getState()
         .employees.find((e) => e.id == employeeId);
       if (employee) {
-        this.employee = {...employee};
+        this.employee = { ...employee };
         this.isEditing = true;
       }
     } else {
       this.employee = {
         id: null,
-        firstName: '',
-        lastName: '',
-        dateOfEmployment: '',
-        dateOfBirth: '',
-        phone: '',
-        email: '',
-        department: 'Analytics',
-        position: 'Junior',
+        firstName: "",
+        lastName: "",
+        dateOfEmployment: "",
+        dateOfBirth: "",
+        phone: "",
+        email: "",
+        department: "",
+        position: "",
       };
       this.isEditing = false;
     }
@@ -82,7 +82,7 @@ class EmployeeForm extends LitElement {
       <div class="container">
         <div class="employee-form">
           <div class="form-header">
-            <h2>${this.isEditing ? t('editEmployee') : t('addNewEmployee')}</h2>
+            <h2>${this.isEditing ? t("editEmployee") : t("addNewEmployee")}</h2>
           </div>
           <form @submit="${this._handleSubmit}">
             <div class="form-grid">
@@ -93,14 +93,14 @@ class EmployeeForm extends LitElement {
                   class="btn-secondary"
                   @click="${this._navigateToList}"
                 >
-                  ${t('cancel')}
+                  ${t("cancel")}
                 </button>
                 <button
                   type="submit"
                   class="btn-primary"
                   ?disabled="${!this._isFormValid()}"
                 >
-                  ${this.isEditing ? t('updateEmployee') : t('addEmployee')}
+                  ${this.isEditing ? t("updateEmployee") : t("addEmployee")}
                 </button>
               </div>
             </div>
@@ -113,67 +113,79 @@ class EmployeeForm extends LitElement {
   _renderInputFields() {
     return html`
       ${this._renderInputField(
-        'firstName',
-        t('firstName'),
-        'text',
-        t('onlyAlphabeticAllowed')
+        "firstName",
+        t("firstName"),
+        "text",
+        t("onlyAlphabeticAllowed")
       )}
       ${this._renderInputField(
-        'lastName',
-        t('lastName'),
-        'text',
-        t('onlyAlphabeticAllowed')
+        "lastName",
+        t("lastName"),
+        "text",
+        t("onlyAlphabeticAllowed")
       )}
       ${this._renderInputField(
-        'dateOfEmployment',
-        t('dateOfEmployment'),
-        'date'
+        "dateOfEmployment",
+        t("dateOfEmployment"),
+        "date"
       )}
-      ${this._renderInputField('dateOfBirth', t('dateOfBirth'), 'date')}
+      ${this._renderInputField("dateOfBirth", t("dateOfBirth"), "date")}
 
       <div class="form-group">
-        <label>${t('phoneNumber')}</label>
+        <label>${t("phoneNumber")}</label>
         <input
           type="tel"
           pattern="^\\+\\d{10,13}$"
           placeholder="+905384166270"
           .value="${this.employee.phone}"
-          @input="${(e) => this._updateField('phone', e)}"
-          title="${t('phoneNumberTitle')}"
+          @input="${(e) => this._updateField("phone", e)}"
+          title="${t("phoneNumberTitle")}"
           required
         />
 
         ${this.errorMessages.phone
           ? html`<span class="error-message">${this.errorMessages.phone}</span>`
-          : ''}
+          : ""}
       </div>
 
-      ${this._renderInputField('email', t('email'), 'email', t('validEmail'))}
+      ${this._renderInputField("email", t("email"), "email", t("validEmail"))}
       <div class="form-group">
-        <label>${t('department')}</label>
+        <label>${t("department")}</label>
         <select
           .value="${this.employee.department}"
-          @change="${(e) => this._updateField('department', e)}"
+          @change="${(e) => this._updateField("department", e)}"
+          aria-label="${t("department")}"
         >
-          <option>${t('analytics')}</option>
-          <option>${t('tech')}</option>
+          <option value="Analytics">${t("analytics")}</option>
+          <option value="Tech">${t("tech")}</option>
         </select>
+        ${this.errorMessages.department
+          ? html`<span class="error-message"
+              >${this.errorMessages.department}</span
+            >`
+          : ""}
       </div>
       <div class="form-group">
-        <label>${t('position')}</label>
+        <label>${t("position")}</label>
         <select
           .value="${this.employee.position}"
-          @change="${(e) => this._updateField('position', e)}"
+          @change="${(e) => this._updateField("position", e)}"
+          aria-label="${t("position")}"
         >
-          <option>${t('junior')}</option>
-          <option>${t('medior')}</option>
-          <option>${t('senior')}</option>
+          <option value="Junior">${t("junior")}</option>
+          <option value="Medior">${t("medior")}</option>
+          <option value="Senior">${t("senior")}</option>
         </select>
+        ${this.errorMessages.position
+          ? html`<span class="error-message"
+              >${this.errorMessages.position}</span
+            >`
+          : ""}
       </div>
     `;
   }
 
-  _renderInputField(field, label, type, errorMessage = '') {
+  _renderInputField(field, label, type, errorMessage = "") {
     return html`
       <div class="form-group">
         <label>${label}</label>
@@ -181,33 +193,37 @@ class EmployeeForm extends LitElement {
           type="${type}"
           .value="${this.employee[field]}"
           @input="${(e) => this._updateField(field, e)}"
-          required
         />
         ${this.errorMessages[field]
           ? html`<span class="error-message"
               >${this.errorMessages[field]}</span
             >`
-          : ''}
+          : ""}
       </div>
     `;
   }
 
   _updateField(field, event) {
-    this.employee = {...this.employee, [field]: event.target.value};
+    this.employee = { ...this.employee, [field]: event.target.value };
     this._validateField(field, event.target.value);
   }
 
   _validateField(field, value) {
     const errorMessage = validateField(field, value, this.employee.id);
-    this.errorMessages = {...this.errorMessages, [field]: errorMessage};
+    this.errorMessages = { ...this.errorMessages, [field]: errorMessage };
   }
 
   _handleSubmit(event) {
     event.preventDefault();
+
+    console.log("Starting validation for form submission");
+    this._validateField("department", this.employee.department || "");
+    this._validateField("position", this.employee.position || "");
+
     if (this._isFormValid()) {
       const action = this.isEditing ? editEmployee : addEmployee;
       store.dispatch(
-        action({...this.employee, id: this.employee.id || Date.now()})
+        action({ ...this.employee, id: this.employee.id || Date.now() })
       );
       this._navigateToList();
     }
@@ -227,9 +243,9 @@ class EmployeeForm extends LitElement {
   }
 
   _navigateToList() {
-    window.history.pushState({}, '', '/');
-    window.dispatchEvent(new Event('popstate'));
+    window.history.pushState({}, "", "/");
+    window.dispatchEvent(new Event("popstate"));
   }
 }
 
-customElements.define('employee-form', EmployeeForm);
+customElements.define("employee-form", EmployeeForm);

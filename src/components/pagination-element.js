@@ -1,10 +1,10 @@
-import {LitElement, html, css} from 'lit';
+import { LitElement, html, css } from "lit";
 
 class Pagination extends LitElement {
   static properties = {
-    currentPage: {type: Number},
-    totalItems: {type: Number},
-    itemsPerPage: {type: Number},
+    currentPage: { type: Number },
+    totalItems: { type: Number },
+    itemsPerPage: { type: Number },
   };
 
   static styles = css`
@@ -24,7 +24,7 @@ class Pagination extends LitElement {
         >
           &lt;
         </button>
-        ${Array.from({length: this.totalPages}, (_, i) => i + 1).map(
+        ${Array.from({ length: this.totalPages }, (_, i) => i + 1).map(
           (page) => html`
             <button
               ?disabled="${page === this.currentPage}"
@@ -45,8 +45,8 @@ class Pagination extends LitElement {
   }
 
   _changePage(page) {
-    this.dispatchEvent(new CustomEvent('page-changed', {detail: {page}}));
+    this.dispatchEvent(new CustomEvent("page-changed", { detail: { page } }));
   }
 }
 
-customElements.define('pagination-element', Pagination);
+customElements.define("pagination-element", Pagination);

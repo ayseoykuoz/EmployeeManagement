@@ -1,4 +1,4 @@
-import {css} from 'lit';
+import { css } from "lit";
 
 export default css`
   :host {
@@ -74,10 +74,6 @@ export default css`
     border-color: var(--primary-color);
   }
 
-  input:invalid {
-    border-color: var(--error-color);
-  }
-
   select {
     background-color: white;
     cursor: pointer;
@@ -92,6 +88,10 @@ export default css`
     margin-top: 24px;
     padding-top: 24px;
     border-top: 1px solid var(--border-color);
+  }
+
+  .error-message {
+    color: var(--error-color);
   }
 
   button {

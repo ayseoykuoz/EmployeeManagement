@@ -1,21 +1,21 @@
-import {LitElement, html} from 'lit';
-import {t} from '../../localization/localization.js';
-import searchBarStyles from './searchBarStyles.js';
+import { LitElement, html } from "lit";
+import { t } from "../../localization/localization.js";
+import searchBarStyles from "./searchBarStyles.js";
 
 export class SearchBar extends LitElement {
   static properties = {
-    value: {type: String},
-    placeholder: {type: String},
+    value: { type: String },
+    placeholder: { type: String },
   };
 
   constructor() {
     super();
-    this.value = '';
+    this.value = "";
   }
 
   connectedCallback() {
     super.connectedCallback();
-    document.addEventListener('language-changed', (event) => {
+    document.addEventListener("language-changed", (event) => {
       this.currentLanguage = event.detail.language;
       this.requestUpdate();
     });
@@ -23,7 +23,7 @@ export class SearchBar extends LitElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    document.removeEventListener('language-changed', this._updateLanguage);
+    document.removeEventListener("language-changed", this._updateLanguage);
   }
 
   static styles = [searchBarStyles];
@@ -35,7 +35,7 @@ export class SearchBar extends LitElement {
           type="text"
           class="search-input"
           .value="${this.value}"
-          placeholder=${t('searchPlaceholder')}
+          placeholder=${t("searchPlaceholder")}
           @input="${this._handleInput}"
           @keydown="${this._handleKeyDown}"
         />
@@ -77,7 +77,7 @@ export class SearchBar extends LitElement {
                 </svg>
               </button>
             `
-          : ''}
+          : ""}
       </div>
     `;
   }
@@ -88,21 +88,21 @@ export class SearchBar extends LitElement {
   }
 
   _handleKeyDown(event) {
-    if (event.key === 'Escape') {
+    if (event.key === "Escape") {
       this._handleClear();
     }
   }
 
   _handleClear() {
-    this.value = '';
+    this.value = "";
     this._dispatchSearch();
-    this.shadowRoot.querySelector('.search-input').focus();
+    this.shadowRoot.querySelector(".search-input").focus();
   }
 
   _dispatchSearch() {
     this.dispatchEvent(
-      new CustomEvent('search', {
-        detail: {query: this.value},
+      new CustomEvent("search", {
+        detail: { query: this.value },
         bubbles: true,
         composed: true,
       })
@@ -110,4 +110,4 @@ export class SearchBar extends LitElement {
   }
 }
 
-customElements.define('search-bar', SearchBar);
+customElements.define("search-bar", SearchBar);

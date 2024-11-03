@@ -1,33 +1,45 @@
-import {store} from '../state/store.js';
+import { store } from "../state/store.js";
+import { t } from "../localization/localization.js";
 
 export const validateField = (field, value, existingEmployeeId = null) => {
-  let errorMessage = '';
+  let errorMessage = "";
 
   switch (field) {
-    case 'firstName':
-    case 'lastName':
+    case "firstName":
+    case "lastName":
       errorMessage = /^[A-Za-zçğıöşüÇĞİÖŞÜ]+(\s[A-Za-zçğıöşüÇĞİÖŞÜ]+)*$/.test(
         value
       )
-        ? ''
-        : 'Only alphabetic characters and spaces are allowed';
+        ? ""
+        : t("onlyAlphabeticAllowed");
       break;
 
-    case 'phone':
+    case "phone":
       if (/^\+?\d{10,13}$/.test(value)) {
-        errorMessage = isPhoneUnique(value)
-          ? ''
-          : 'Phone number must be unique';
+        errorMessage = isPhoneUnique(value, existingEmployeeId)
+          ? ""
+          : t("phoneNumberUnique");
       } else {
-        errorMessage =
-          'Phone number must start with + and include country code followed by 10-13 digits';
+        errorMessage = t("phoneNumberTitle");
       }
       break;
-    case 'email':
+
+    case "email":
       errorMessage = isEmailUnique(value, existingEmployeeId)
-        ? ''
-        : 'Email must be unique';
+        ? ""
+        : t("emailUnique");
       break;
+
+    case "department":
+      console.log(`Validating department with value: ${value}`);
+      errorMessage = value ? "" : t("departmentRequired");
+      break;
+
+    case "position":
+      console.log(`Validating position with value: ${value}`);
+      errorMessage = value ? "" : t("positionRequired");
+      break;
+
     default:
       break;
   }

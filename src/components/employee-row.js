@@ -1,8 +1,8 @@
-import {LitElement, html, css} from 'lit';
+import { LitElement, html, css } from "lit";
 
 class EmployeeRow extends LitElement {
   static properties = {
-    employee: {type: Object},
+    employee: { type: Object },
   };
 
   static styles = css`
@@ -39,12 +39,12 @@ class EmployeeRow extends LitElement {
   }
 
   _edit() {
-    this.dispatchEvent(new CustomEvent('edit', {detail: this.employee}));
+    this.dispatchEvent(new CustomEvent("edit", { detail: this.employee }));
   }
 
   _delete() {
-    this.dispatchEvent(new CustomEvent('delete', {detail: this.employee}));
+    this.dispatchEvent(new CustomEvent("delete", { detail: this.employee }));
   }
 }
 
-customElements.define('employee-row', EmployeeRow);
+customElements.define("employee-row", EmployeeRow);

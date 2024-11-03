@@ -1,24 +1,24 @@
-import {LitElement, html, css} from 'lit';
-import {store, deleteEmployee} from '../../state/store.js';
-import {t} from '../../localization/localization.js';
-import '../../components/employee-row.js';
-import '../../components/pagination-element.js';
-import '../../components/SearchBar/SearchBar.js';
-import '../EmployeeForm/EmployeeForm.js';
-import '../../components/NavigationBar/NavBar.js';
-import '../../components/DialogComponent/ConfirmationDialog.js';
-import employeeListStyles from './employeeListStyles.js';
+import { LitElement, html, css } from "lit";
+import { store, deleteEmployee } from "../../state/store.js";
+import { t } from "../../localization/localization.js";
+import "../../components/employee-row.js";
+import "../../components/pagination-element.js";
+import "../../components/SearchBar/SearchBar.js";
+import "../EmployeeForm/EmployeeForm.js";
+import "../../components/NavigationBar/NavBar.js";
+import "../../components/DialogComponent/ConfirmationDialog.js";
+import employeeListStyles from "./employeeListStyles.js";
 
 class EmployeeList extends LitElement {
   static properties = {
-    employees: {type: Array},
-    currentPage: {type: Number},
-    employeesPerPage: {type: Number},
-    searchQuery: {type: String},
-    selectedEmployees: {type: Array},
-    currentView: {type: String},
-    showDeleteDialog: {type: Boolean},
-    employeeToDelete: {type: Object},
+    employees: { type: Array },
+    currentPage: { type: Number },
+    employeesPerPage: { type: Number },
+    searchQuery: { type: String },
+    selectedEmployees: { type: Array },
+    currentView: { type: String },
+    showDeleteDialog: { type: Boolean },
+    employeeToDelete: { type: Object },
   };
 
   constructor() {
@@ -26,31 +26,28 @@ class EmployeeList extends LitElement {
     this.employees = [];
     this.currentPage = 1;
     this.employeesPerPage = 6;
-    this.searchQuery = '';
+    this.searchQuery = "";
     this.selectedEmployees = [];
-    this.currentView = 'table';
+    this.currentView = "table";
     this.showDeleteDialog = false;
     this.employeeToDelete = null;
 
-    // Subscribe once to Redux store updates
     this.unsubscribe = store.subscribe(() => {
       this.employees = store.getState().employees;
-      this.requestUpdate(); // Ensure component re-renders on state update
+      this.requestUpdate(); 
     });
   }
 
   connectedCallback() {
     super.connectedCallback();
-    // Fetch initial employees list from Redux store
     this.employees = store.getState().employees;
-    // Listen for language changes
-    document.addEventListener('language-changed', this._updateLocalization);
+    document.addEventListener("language-changed", this._updateLocalization);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    if (this.unsubscribe) this.unsubscribe(); // Clean up Redux subscription
-    document.removeEventListener('language-changed', this._updateLocalization);
+    if (this.unsubscribe) this.unsubscribe(); 
+    document.removeEventListener("language-changed", this._updateLocalization);
   }
 
   _updateLocalization = () => {
@@ -62,9 +59,9 @@ class EmployeeList extends LitElement {
   }
 
   get deleteDialogMessage() {
-    return t('confirmationDialogMessage', {
-      firstName: this.employeeToDelete?.firstName || '',
-      lastName: this.employeeToDelete?.lastName || '',
+    return t("confirmationDialogMessage", {
+      firstName: this.employeeToDelete?.firstName || "",
+      lastName: this.employeeToDelete?.lastName || "",
     });
   }
   _handleSelect(event, id) {
@@ -79,7 +76,6 @@ class EmployeeList extends LitElement {
 
   _handleSelectAll(event) {
     if (event.target.checked) {
-      // Select all filtered and paginated employees
       const startIndex = (this.currentPage - 1) * this.employeesPerPage;
       const filteredEmployees = this.employees.filter((employee) =>
         Object.values(employee).some((val) =>
@@ -125,12 +121,12 @@ class EmployeeList extends LitElement {
       ></confirmation-dialog>
       <div class="container">
         <div class="list-header">
-          <h1 class="list-title">${t('employeeListTitle')}</h1>
+          <h1 class="list-title">${t("employeeListTitle")}</h1>
           <div class="view-controls">
             <button
-              class="view-btn ${this.currentView === 'table' ? 'active' : ''}"
-              @click="${() => this._toggleView('table')}"
-              title="${t('toggle_table_view')}"
+              class="view-btn ${this.currentView === "table" ? "active" : ""}"
+              @click="${() => this._toggleView("table")}"
+              title="${t("toggle_table_view")}"
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path
@@ -143,9 +139,9 @@ class EmployeeList extends LitElement {
               </svg>
             </button>
             <button
-              class="view-btn ${this.currentView === 'grid' ? 'active' : ''}"
-              @click="${() => this._toggleView('grid')}"
-              title="${t('toggle_grid_view')}"
+              class="view-btn ${this.currentView === "grid" ? "active" : ""}"
+              @click="${() => this._toggleView("grid")}"
+              title="${t("toggle_grid_view")}"
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path
@@ -173,18 +169,18 @@ class EmployeeList extends LitElement {
                     type="checkbox"
                     class="checkbox"
                     @change="${this._handleSelectAll}"
-                    title="${t('select_all')}"
+                    title="${t("select_all")}"
                   />
                 </th>
-                <th>${t('firstName')}</th>
-                <th>${t('lastName')}</th>
-                <th>${t('dateOfEmployment')}</th>
-                <th>${t('dateOfBirth')}</th>
-                <th>${t('phone')}</th>
-                <th>${t('email')}</th>
-                <th>${t('department')}</th>
-                <th>${t('position')}</th>
-                <th>${t('actions')}</th>
+                <th>${t("firstName")}</th>
+                <th>${t("lastName")}</th>
+                <th>${t("dateOfEmployment")}</th>
+                <th>${t("dateOfBirth")}</th>
+                <th>${t("phone")}</th>
+                <th>${t("email")}</th>
+                <th>${t("department")}</th>
+                <th>${t("position")}</th>
+                <th>${t("actions")}</th>
               </tr>
             </thead>
             <tbody>
@@ -208,7 +204,7 @@ class EmployeeList extends LitElement {
                     <button
                       class="action-btn edit"
                       @click="${() => this._navigateToEdit(employee.id)}"
-                      title="${t('edit')}"
+                      title="${t("edit")}"
                     >
                       <svg
                         viewBox="0 0 24 24"
@@ -228,7 +224,7 @@ class EmployeeList extends LitElement {
                     <button
                       class="action-btn delete"
                       @click="${() => this.handleDelete(employee)}"
-                      title="${t('delete')}"
+                      title="${t("delete")}"
                     >
                       <svg
                         viewBox="0 0 24 24"
@@ -246,37 +242,37 @@ class EmployeeList extends LitElement {
                 </div>
                 <div class="card-content">
                   <div class="card-field">
-                    <span class="field-label">${t('firstName')}</span>
+                    <span class="field-label">${t("firstName")}</span>
                     <span class="field-value">${employee.firstName}</span>
                   </div>
                   <div class="card-field">
-                    <span class="field-label">${t('lastName')}</span>
+                    <span class="field-label">${t("lastName")}</span>
                     <span class="field-value">${employee.lastName}</span>
                   </div>
                   <div class="card-field">
-                    <span class="field-label">${t('dateOfEmployment')}</span>
+                    <span class="field-label">${t("dateOfEmployment")}</span>
                     <span class="field-value"
                       >${employee.dateOfEmployment}</span
                     >
                   </div>
                   <div class="card-field">
-                    <span class="field-label">${t('dateOfBirth')}</span>
+                    <span class="field-label">${t("dateOfBirth")}</span>
                     <span class="field-value">${employee.dateOfBirth}</span>
                   </div>
                   <div class="card-field">
-                    <span class="field-label">${t('phone')}</span>
+                    <span class="field-label">${t("phone")}</span>
                     <span class="field-value">${employee.phone}</span>
                   </div>
                   <div class="card-field">
-                    <span class="field-label">${t('email')}</span>
+                    <span class="field-label">${t("email")}</span>
                     <span class="field-value">${employee.email}</span>
                   </div>
                   <div class="card-field">
-                    <span class="field-label">${t('department')}</span>
+                    <span class="field-label">${t("department")}</span>
                     <span class="field-value">${employee.department}</span>
                   </div>
                   <div class="card-field">
-                    <span class="field-label">${t('position')}</span>
+                    <span class="field-label">${t("position")}</span>
                     <span class="field-value">${employee.position}</span>
                   </div>
                 </div>
@@ -285,8 +281,8 @@ class EmployeeList extends LitElement {
           )}
         </div>
         ${paginatedEmployees.length === 0
-          ? html`<div class="no-data-message">${t('noEmployeesFound')}</div>`
-          : ''}
+          ? html`<div class="no-data-message">${t("noEmployeesFound")}</div>`
+          : ""}
         <pagination-element
           .currentPage="${this.currentPage}"
           .totalItems="${filteredEmployees.length}"
@@ -298,7 +294,7 @@ class EmployeeList extends LitElement {
   }
 
   _renderTableRow(employee) {
-    if (this.currentView === 'table') {
+    if (this.currentView === "table") {
       return html`
         <tr>
           <td>
@@ -321,7 +317,7 @@ class EmployeeList extends LitElement {
             <button
               class="action-btn edit"
               @click="${() => this._navigateToEdit(employee.id)}"
-              title="${t('edit')}"
+              title="${t("edit")}"
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path
@@ -337,7 +333,7 @@ class EmployeeList extends LitElement {
             <button
               class="action-btn delete"
               @click="${() => this.handleDelete(employee)}"
-              title="${t('delete')}"
+              title="${t("delete")}"
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path
@@ -364,7 +360,7 @@ class EmployeeList extends LitElement {
               <button
                 class="action-btn edit"
                 @click="${() => this._navigateToEdit(employee.id)}"
-                title="${t('edit')}"
+                title="${t("edit")}"
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <path
@@ -380,7 +376,7 @@ class EmployeeList extends LitElement {
               <button
                 class="action-btn delete"
                 @click="${() => this.handleDelete(employee)}"
-                title="${t('delete')}"
+                title="${t("delete")}"
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <path
@@ -394,35 +390,35 @@ class EmployeeList extends LitElement {
           </div>
           <div class="card-content">
             <div class="card-field">
-              <span class="field-label">${t('firstName')}</span>
+              <span class="field-label">${t("firstName")}</span>
               <span class="field-value">${employee.firstName}</span>
             </div>
             <div class="card-field">
-              <span class="field-label">${t('lastName')}</span>
+              <span class="field-label">${t("lastName")}</span>
               <span class="field-value">${employee.lastName}</span>
             </div>
             <div class="card-field">
-              <span class="field-label">${t('dateOfEmployment')}</span>
+              <span class="field-label">${t("dateOfEmployment")}</span>
               <span class="field-value">${employee.dateOfEmployment}</span>
             </div>
             <div class="card-field">
-              <span class="field-label">${t('dateOfBirth')}</span>
+              <span class="field-label">${t("dateOfBirth")}</span>
               <span class="field-value">${employee.dateOfBirth}</span>
             </div>
             <div class="card-field">
-              <span class="field-label">${t('phone')}</span>
+              <span class="field-label">${t("phone")}</span>
               <span class="field-value">${employee.phone}</span>
             </div>
             <div class="card-field">
-              <span class="field-label">${t('email')}</span>
+              <span class="field-label">${t("email")}</span>
               <span class="field-value">${employee.email}</span>
             </div>
             <div class="card-field">
-              <span class="field-label">${t('department')}</span>
+              <span class="field-label">${t("department")}</span>
               <span class="field-value">${employee.department}</span>
             </div>
             <div class="card-field">
-              <span class="field-label">${t('position')}</span>
+              <span class="field-label">${t("position")}</span>
               <span class="field-value">${employee.position}</span>
             </div>
           </div>
@@ -436,18 +432,18 @@ class EmployeeList extends LitElement {
   }
 
   _navigateToAdd() {
-    window.history.pushState({}, '', '/add');
-    window.dispatchEvent(new Event('popstate')); // Notify router of the URL change
+    window.history.pushState({}, "", "/add");
+    window.dispatchEvent(new Event("popstate"));
   }
 
   _navigateToEdit(id) {
-    window.history.pushState({}, '', `/edit/${id}`);
-    window.dispatchEvent(new Event('popstate')); // Notify router of the URL change
+    window.history.pushState({}, "", `/edit/${id}`);
+    window.dispatchEvent(new Event("popstate")); 
   }
 
   handleSearch(event) {
     this.searchQuery = event.detail.query.toLowerCase();
-    this.currentPage = 1; // Reset to first page for new search
+    this.currentPage = 1; 
   }
 
   handlePageChange(event) {
@@ -455,7 +451,6 @@ class EmployeeList extends LitElement {
   }
 
   handleDelete(employee) {
-    // Set the employee to delete and open the dialog
     this.employeeToDelete = employee;
     this.showDeleteDialog = true;
   }
@@ -473,4 +468,4 @@ class EmployeeList extends LitElement {
   }
 }
 
-customElements.define('employee-list', EmployeeList);
+customElements.define("employee-list", EmployeeList);

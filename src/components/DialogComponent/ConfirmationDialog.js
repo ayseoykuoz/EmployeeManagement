@@ -1,11 +1,11 @@
-import {LitElement, html} from 'lit';
-import confirmationDialogStyles from './confirmationDialogStyles';
-import {t} from '../../localization/localization.js';
+import { LitElement, html } from "lit";
+import confirmationDialogStyles from "./confirmationDialogStyles";
+import { t } from "../../localization/localization.js";
 
 export class ConfirmationDialog extends LitElement {
   static properties = {
-    open: {type: Boolean},
-    message: {type: String},
+    open: { type: Boolean },
+    message: { type: String },
   };
 
   constructor() {
@@ -15,11 +15,11 @@ export class ConfirmationDialog extends LitElement {
 
   _close() {
     this.open = false;
-    this.dispatchEvent(new CustomEvent('dialog-closed'));
+    this.dispatchEvent(new CustomEvent("dialog-closed"));
   }
 
   _confirm() {
-    this.dispatchEvent(new CustomEvent('dialog-confirmed'));
+    this.dispatchEvent(new CustomEvent("dialog-confirmed"));
     this._close();
   }
 
@@ -36,7 +36,7 @@ export class ConfirmationDialog extends LitElement {
       >
         <div class="dialog">
           <div class="dialog-header">
-            <h2 class="dialog-title">${t('confirmationDialogTitle')}</h2>
+            <h2 class="dialog-title">${t("confirmationDialogTitle")}</h2>
             <button class="close-button" @click=${this._close}>
               <svg
                 class="close-icon"
@@ -55,10 +55,10 @@ export class ConfirmationDialog extends LitElement {
           <div class="dialog-content">${this.message}</div>
           <div class="dialog-footer">
             <button class="btn btn-primary" @click=${this._confirm}>
-              ${t('confirmationDialogConfirmText')}
+              ${t("confirmationDialogConfirmText")}
             </button>
             <button class="btn btn-secondary" @click=${this._close}>
-              ${t('confirmationDialogCancelText')}
+              ${t("confirmationDialogCancelText")}
             </button>
           </div>
         </div>
@@ -67,4 +67,4 @@ export class ConfirmationDialog extends LitElement {
   }
 }
 
-customElements.define('confirmation-dialog', ConfirmationDialog);
+customElements.define("confirmation-dialog", ConfirmationDialog);

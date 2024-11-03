@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {LitElement, html, css} from 'lit';
+import { LitElement, html, css } from "lit";
 
 /**
  * An example element.
@@ -31,19 +31,19 @@ export class MyElement extends LitElement {
        * The name to say "Hello" to.
        * @type {string}
        */
-      name: {type: String},
+      name: { type: String },
 
       /**
        * The number of times the button has been clicked.
        * @type {number}
        */
-      count: {type: Number},
+      count: { type: Number },
     };
   }
 
   constructor() {
     super();
-    this.name = 'World';
+    this.name = "World";
     this.count = 0;
   }
 
@@ -59,7 +59,7 @@ export class MyElement extends LitElement {
 
   _onClick() {
     this.count++;
-    this.dispatchEvent(new CustomEvent('count-changed'));
+    this.dispatchEvent(new CustomEvent("count-changed"));
   }
 
   /**
@@ -72,4 +72,4 @@ export class MyElement extends LitElement {
   }
 }
 
-window.customElements.define('my-element', MyElement);
+window.customElements.define("my-element", MyElement);
