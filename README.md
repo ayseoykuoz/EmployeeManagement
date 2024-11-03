@@ -4,7 +4,7 @@ An Employee Management Application built with LitElement and Redux, providing a 
 #Getting Started
 
 Clone the Repository:
-git clone [<repository-url>](https://github.com/ayseoykuoz/EmployeeManagement)
+git clone https://github.com/ayseoykuoz/EmployeeManagement.git
 cd employee-management-app
 
 
