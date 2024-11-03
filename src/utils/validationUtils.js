@@ -15,7 +15,7 @@ export const validateField = (field, value, existingEmployeeId = null) => {
       break;
 
     case "phone":
-      if (/^\+?\d{10,13}$/.test(value)) {
+      if (/^\+?\d{11,12}$/.test(value)) {
         errorMessage = isPhoneUnique(value, existingEmployeeId)
           ? ""
           : t("phoneNumberUnique");

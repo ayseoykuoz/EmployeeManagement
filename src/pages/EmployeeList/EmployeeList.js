@@ -8,6 +8,7 @@ import "../EmployeeForm/EmployeeForm.js";
 import "../../components/NavigationBar/NavBar.js";
 import "../../components/DialogComponent/ConfirmationDialog.js";
 import employeeListStyles from "./employeeListStyles.js";
+import { formatDate, formatPhoneNumber } from "../../utils/helper.js";
 
 class EmployeeList extends LitElement {
   static properties = {
@@ -252,16 +253,16 @@ class EmployeeList extends LitElement {
                   <div class="card-field">
                     <span class="field-label">${t("dateOfEmployment")}</span>
                     <span class="field-value"
-                      >${employee.dateOfEmployment}</span
+                      >${formatDate(employee.dateOfEmployment)}</span
                     >
                   </div>
                   <div class="card-field">
                     <span class="field-label">${t("dateOfBirth")}</span>
-                    <span class="field-value">${employee.dateOfBirth}</span>
+                    <span class="field-value">${formatDate(employee.dateOfBirth)}</span>
                   </div>
                   <div class="card-field">
                     <span class="field-label">${t("phone")}</span>
-                    <span class="field-value">${employee.phone}</span>
+                    <span class="field-value">${formatPhoneNumber(employee.phone)}</span>
                   </div>
                   <div class="card-field">
                     <span class="field-label">${t("email")}</span>
@@ -307,9 +308,9 @@ class EmployeeList extends LitElement {
           </td>
           <td>${employee.firstName}</td>
           <td>${employee.lastName}</td>
-          <td>${employee.dateOfEmployment}</td>
-          <td>${employee.dateOfBirth}</td>
-          <td>${employee.phone}</td>
+          <td>${formatDate(employee.dateOfEmployment)}</td>
+          <td>${formatDate(employee.dateOfBirth)}</td>
+          <td>${formatPhoneNumber(employee.phone)}</td>
           <td>${employee.email}</td>
           <td>${employee.department}</td>
           <td>${employee.position}</td>
@@ -399,15 +400,15 @@ class EmployeeList extends LitElement {
             </div>
             <div class="card-field">
               <span class="field-label">${t("dateOfEmployment")}</span>
-              <span class="field-value">${employee.dateOfEmployment}</span>
+              <span class="field-value">${formatDate(employee.dateOfEmployment)}</span>
             </div>
             <div class="card-field">
               <span class="field-label">${t("dateOfBirth")}</span>
-              <span class="field-value">${employee.dateOfBirth}</span>
+              <span class="field-value">${formatDate(employee.dateOfBirth)}</span>
             </div>
             <div class="card-field">
               <span class="field-label">${t("phone")}</span>
-              <span class="field-value">${employee.phone}</span>
+              <span class="field-value">${formatPhoneNumber(employee.phone)}</span>
             </div>
             <div class="card-field">
               <span class="field-label">${t("email")}</span>
