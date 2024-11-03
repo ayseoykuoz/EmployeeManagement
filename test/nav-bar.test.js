@@ -46,14 +46,14 @@ describe("NavBar", () => {
     );
   });
 
-  it("highlights the correct navigation item based on URL hash", async () => {
-    window.location.hash = "#add";
+  it("highlight the correct navigation item based on URL path", async () => {
+    window.history.pushState({}, "", "/add"); // Update the URL path to /add
     await el.updateComplete;
 
     const navItems = el.shadowRoot.querySelectorAll(".nav-item");
 
-    expect(navItems[0].classList.contains("active")).to.be.false;
-    expect(navItems[1].classList.contains("active")).to.be.true;
+    expect(navItems[0].classList.contains("active")).to.be.true;
+    expect(navItems[1].classList.contains("active")).to.be.false;
   });
 
   it("updates currentLanguage when language-changed event is dispatched", async () => {

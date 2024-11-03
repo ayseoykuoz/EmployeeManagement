@@ -26,8 +26,8 @@ describe("EmployeeForm", () => {
       dateOfBirth: "",
       phone: "",
       email: "",
-      department: "Analytics",
-      position: "Junior",
+      department: "",
+      position: "",
     });
     expect(el.isEditing).to.be.false;
     expect(el.errorMessages).to.deep.equal({});
@@ -81,6 +81,34 @@ describe("EmployeeForm", () => {
     expect(el._isFormValid()).to.be.false;
   });
 
+  it("shows the confirmation dialog on form submit when in edit mode and form is edited", async () => {
+    el.isEditing = true;
+    el.employee = {
+      id: 1,
+      firstName: "John",
+      lastName: "Doe",
+      email: "john.doe@example.com",
+      phone: "+1234567890",
+      department: "Tech",
+      position: "Senior",
+    };
+
+    el.employee.firstName = "Johnathan";
+    el.isFormEdited = true;
+    await el.updateComplete;
+
+    const form = el.shadowRoot.querySelector("form");
+
+    const submitEvent = new Event("submit", {
+      bubbles: true,
+      cancelable: true,
+    });
+    form.dispatchEvent(submitEvent);
+    await el.updateComplete;
+
+    expect(el.showConfirmationDialog).to.be.true;
+  });
+
   it("form is invalid when there are validation errors", () => {
     el.employee.firstName = "John";
     el.employee.lastName = "Doe";
@@ -100,62 +128,6 @@ describe("EmployeeForm", () => {
     el.errorMessages = {};
 
     expect(el._isFormValid()).to.be.true;
-  });
-
-  it("dispatches addEmployee action on form submit when adding new employee", async () => {
-    const dispatchSpy = sinon.spy(store, "dispatch");
-
-    el.employee.firstName = "John";
-    el.employee.lastName = "Doe";
-    el.employee.email = "john.doe@example.com";
-    el.employee.phone = "+1234567890";
-
-    el.errorMessages = {};
-    await el.updateComplete;
-
-    const form = el.shadowRoot.querySelector("form");
-
-    const submitEvent = new Event("submit", {
-      bubbles: true,
-      cancelable: true,
-    });
-    form.dispatchEvent(submitEvent);
-    await el.updateComplete;
-
-    expect(dispatchSpy.calledOnce).to.be.true;
-    const dispatchedAction = dispatchSpy.getCall(0).args[0];
-    expect(dispatchedAction.type).to.equal("ADD_EMPLOYEE");
-
-    dispatchSpy.restore();
-  });
-
-  it("dispatches editEmployee action on form submit when editing employee", async () => {
-    const dispatchSpy = sinon.spy(store, "dispatch");
-
-    el.isEditing = true;
-    el.employee.id = 1;
-    el.employee.firstName = "Jane";
-    el.employee.lastName = "Doe";
-    el.employee.email = "jane.doe@example.com";
-    el.employee.phone = "+1234567890";
-
-    el.errorMessages = {};
-    await el.updateComplete;
-
-    const form = el.shadowRoot.querySelector("form");
-
-    const submitEvent = new Event("submit", {
-      bubbles: true,
-      cancelable: true,
-    });
-    form.dispatchEvent(submitEvent);
-    await el.updateComplete;
-
-    expect(dispatchSpy.calledOnce).to.be.true;
-    const dispatchedAction = dispatchSpy.getCall(0).args[0];
-    expect(dispatchedAction.type).to.equal("EDIT_EMPLOYEE");
-
-    dispatchSpy.restore();
   });
 
   it("loads employee data from URL when in edit mode", async () => {

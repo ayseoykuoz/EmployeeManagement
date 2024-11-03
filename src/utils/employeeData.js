@@ -29,7 +29,7 @@ export const employeeData = [
     dateOfBirth: "1992-02-11",
     phone: "+98765435210",
     email: "alice.johnson@example.com",
-    department: "Marketing",
+    department: "Analytics",
     position: "Medior",
   },
   {
@@ -40,7 +40,7 @@ export const employeeData = [
     dateOfBirth: "1988-07-08",
     phone: "+13456578901",
     email: "bob.brown@example.com",
-    department: "HR",
+    department: "Analytics",
     position: "Senior",
   },
   {
@@ -51,7 +51,7 @@ export const employeeData = [
     dateOfBirth: "1991-04-21",
     phone: "+14321637890",
     email: "eve.white@example.com",
-    department: "Finance",
+    department: "Analytics",
     position: "Junior",
   },
   {
@@ -62,7 +62,7 @@ export const employeeData = [
     dateOfBirth: "1993-09-17",
     phone: "+10923435678",
     email: "carl.davis@example.com",
-    department: "Tech",
+    department: "Analytics",
     position: "Medior",
   },
   {
@@ -73,7 +73,7 @@ export const employeeData = [
     dateOfBirth: "1986-11-30",
     phone: "+15673890123",
     email: "grace.harris@example.com",
-    department: "Marketing",
+    department: "Analytics",
     position: "Senior",
   },
   {
@@ -84,7 +84,7 @@ export const employeeData = [
     dateOfBirth: "1989-02-13",
     phone: "+19873654321",
     email: "mike.clark@example.com",
-    department: "Operations",
+    department: "Analytics",
     position: "Junior",
   },
   {
@@ -95,7 +95,7 @@ export const employeeData = [
     dateOfBirth: "1994-12-12",
     phone: "+11234536789",
     email: "sophia.walker@example.com",
-    department: "Finance",
+    department: "Analytics",
     position: "Medior",
   },
   {
@@ -117,7 +117,7 @@ export const employeeData = [
     dateOfBirth: "1987-01-28",
     phone: "+11763543210",
     email: "emma.thomas@example.com",
-    department: "HR",
+    department: "Analytics",
     position: "Medior",
   },
   {
@@ -128,7 +128,7 @@ export const employeeData = [
     dateOfBirth: "1990-06-18",
     phone: "+14567893012",
     email: "james.martinez@example.com",
-    department: "Sales",
+    department: "HAnalyticsR",
     position: "Junior",
   },
 ];

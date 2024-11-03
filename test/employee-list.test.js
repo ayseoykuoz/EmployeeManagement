@@ -17,7 +17,7 @@ describe("EmployeeList", () => {
       lastName: "Doe",
       dateOfEmployment: "2022-01-15",
       dateOfBirth: "1990-05-25",
-      phone: "+1234567890",
+      phone: "+12345678950",
       email: "john.doe@example.com",
       department: "Analytics",
       position: "Senior",
@@ -78,10 +78,10 @@ describe("EmployeeList", () => {
         lastName: `Last${i}`,
         dateOfEmployment: "2021-01-01",
         dateOfBirth: "1995-01-01",
-        phone: "0000000000",
+        phone: "+905384166270",
         email: `employee${i}@example.com`,
-        department: "Sales",
-        position: "Associate",
+        department: "Tech",
+        position: "Senior",
       });
     }
     store.dispatch({ type: "ADD_EMPLOYEES", payload: additionalEmployees });
