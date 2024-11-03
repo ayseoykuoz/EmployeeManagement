@@ -1,7 +1,7 @@
 # Employee Management Application
 An Employee Management Application built with LitElement and Redux, providing a comprehensive system to manage employee data, navigate between views, and utilize localization for multilingual support.
 
-#Getting Started
+# Getting Started
 
 Clone the Repository:
 git clone https://github.com/ayseoykuoz/EmployeeManagement.git
