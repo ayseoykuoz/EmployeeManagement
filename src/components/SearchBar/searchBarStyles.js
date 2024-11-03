@@ -9,11 +9,11 @@ export default css`
   .search-container {
     position: relative;
     width: 100%;
-    margin:0px;
+    margin: 0px;
   }
 
   .search-input {
-    width: 100%;  
+    width: 100%;
     padding: var(--spacing-medium);
     padding-left: calc(var(--spacing-medium) + 32px);
     background-color: var(--text-white);
@@ -81,5 +81,4 @@ export default css`
   .search-input:placeholder-shown + .clear-button {
     display: none;
   }
-
 `;

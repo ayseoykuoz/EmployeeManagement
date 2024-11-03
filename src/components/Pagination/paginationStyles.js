@@ -21,8 +21,8 @@ export default css`
   }
 
   button {
-    min-width: 36px;
-    height: 36px;
+    min-width: 24px;
+    height: 24px;
     border: none;
     background: transparent;
     border-radius: 50%;
@@ -69,15 +69,12 @@ export default css`
     color: var(--text-white);
   }
 
-  /* Responsive adjustments for mobile view */
   @media (max-width: 768px) {
     .pagination-container {
       padding: calc(var(--spacing-small) * 0.5);
     }
 
     button {
-      min-width: 28px;
-      height: 28px;
       font-size: calc(var(--font-small) * 0.9);
     }
 

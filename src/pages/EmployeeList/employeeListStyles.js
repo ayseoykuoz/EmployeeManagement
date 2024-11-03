@@ -21,14 +21,14 @@ export default css`
     font-size: var(--font-medium);
     font-weight: 500;
     color: var(--text-gray);
-    background-color: #f9fafb; 
-    border: 1px solid #e5e7eb; 
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   }
 
   .no-data-message::before {
-    content: "🔍"; 
+    content: "🔍";
     font-size: 24px;
     margin-right: var(--spacing-small);
   }
@@ -56,7 +56,6 @@ export default css`
     width: 100%;
     box-sizing: border-box;
   }
-
 
   .card-view {
     display: none;
