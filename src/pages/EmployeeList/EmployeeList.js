@@ -1,8 +1,8 @@
 import { LitElement, html, css } from "lit";
 import { store, deleteEmployee } from "../../state/store.js";
 import { t } from "../../localization/localization.js";
-import "../../components/employee-row.js";
-import "../../components/pagination-element.js";
+import "../../components/EmployeeList/EmployeeRow.js";
+import "../../components/EmployeeList/PaginationElement.js";
 import "../../components/SearchBar/SearchBar.js";
 import "../EmployeeForm/EmployeeForm.js";
 import "../../components/NavigationBar/NavBar.js";
