@@ -7,9 +7,6 @@ class Pagination extends LitElement {
     itemsPerPage: { type: Number },
   };
 
-  static styles = css`
-    /* Styles for pagination (buttons, numbers, etc.) */
-  `;
 
   get totalPages() {
     return Math.ceil(this.totalItems / this.itemsPerPage);

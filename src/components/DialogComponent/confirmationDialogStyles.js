@@ -120,12 +120,13 @@ export default css`
     border: 1px solid var(--primary-blue-color);
   }
 
-  .btn-secondary:hover {
-    background-color: #f9fafb;
-    border-color: #d1d5db;
-  }
+   .btn-secondary:hover {
 
-  /* Close icon styles */
+  color: var(--text-white);
+  background-color: var(--primary-blue-color);
+  border: 1px solid var(--primary-blue-color);
+}
+
   .close-icon {
     color: #9ca3af;
     width: 24px;

@@ -1,15 +1,12 @@
 import { css } from "lit";
+
 export default css`
-  :host {
-    display: block;
-    font-family: var(--font-family);
-  }
+
 
   .navbar {
-    background-color: var(---text-white, #ffffff);
-    border-bottom: 1px solid var(--border-color, #eeeeee);
-    padding: 12px 24px;
-    height: 20px;
+    background-color: var(--text-white);
+    border-bottom: 1px solid var(--border-color);
+    padding: var(--spacing-small) var(--spacing-large);
     margin: 40px 20px 5px;
     display: flex;
     align-items: center;
@@ -24,17 +21,18 @@ export default css`
     width: 100%;
   }
 
-  .left-section {
+  .left-section,
+  .right-section {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--spacing-small);
   }
 
   .logo-section {
     display: flex;
     align-items: center;
-    gap: 12px;
-    color: var(--primary-color, #ff6200);
+    gap: var(--spacing-medium);
+    color: var(--primary-color);
     text-decoration: none;
   }
 
@@ -46,25 +44,19 @@ export default css`
 
   .logo-text {
     font-weight: 600;
-    font-size: 16px;
-    color: var(--text-black, #333333);
+    font-size: var(--font-medium);
+    color: var(--text-black);
     letter-spacing: -0.2px;
-  }
-
-  .right-section {
-    display: flex;
-    align-items: center;
-    gap: 8px;
   }
 
   .nav-item {
     display: flex;
     align-items: center;
-    gap: 5px;
-    color: var(--primary-color, #ff6200);
+    gap: var(--spacing-small);
+    color: var(--primary-color);
     text-decoration: none;
     height: 36px;
-    padding: 0 8px;
+    padding: 0 var(--spacing-small);
     border-radius: 4px;
     transition: all 0.2s ease;
   }
@@ -75,7 +67,7 @@ export default css`
   }
 
   .nav-item.active {
-    color: var(--not-active-color, #f4b88e);
+    color: var(--not-active-color);
   }
 
   .nav-item.active svg {
@@ -83,7 +75,7 @@ export default css`
   }
 
   .nav-item:hover {
-    color: var(--primary-color, #ff6200);
+    color: var(--primary-color);
   }
 
   .nav-item:hover svg {
@@ -97,26 +89,18 @@ export default css`
 
   .add-new.active {
     font-weight: 600;
-    color: var(--text-black, #333333);
-  }
-
-  .add-new.active svg {
-    opacity: 0.9;
+    color: var(--text-black);
   }
 
   .add-new:hover {
-    color: var(--primary-color, #ff6200);
-  }
-
-  .add-new:hover svg {
-    opacity: 1;
+    color: var(--primary-color);
   }
 
   .language-selector {
     display: flex;
     align-items: center;
     height: 36px;
-    padding: 0 8px;
+    padding: 0 var(--spacing-small);
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -138,19 +122,16 @@ export default css`
 
   @media (max-width: 768px) {
     .navbar {
-      padding: 12px 16px;
+      padding: var(--spacing-small) var(--spacing-medium);
     }
 
-    .nav-item span {
+    .nav-item span,
+    .add-new span {
       display: none;
     }
 
     .right-section {
-      gap: 4px;
-    }
-
-    .add-new span {
-      display: none;
+      gap: var(--spacing-small);
     }
   }
 `;

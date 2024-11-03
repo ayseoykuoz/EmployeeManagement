@@ -5,9 +5,6 @@ class EmployeeRow extends LitElement {
     employee: { type: Object },
   };
 
-  static styles = css`
-    /* Styling for the row to match the table design */
-  `;
 
   render() {
     const {

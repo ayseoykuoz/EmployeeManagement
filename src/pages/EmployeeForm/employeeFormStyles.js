@@ -3,39 +3,34 @@ import { css } from "lit";
 export default css`
   :host {
     display: block;
-    --primary-blue-color: #172b53;
-    --text-gray: #666666;
-    --border-color: #eeeeee;
-    --error-color: #dc3545;
-    --success-color: #28a745;
-    font-family: Arial, sans-serif;
+    font-family: var(--font-family);
   }
 
   .container {
     max-width: 800px;
-    margin: 32px auto;
-    padding: 0 24px;
+    margin: var(--spacing-large) auto;
+    padding: 0 var(--spacing-medium);
   }
 
   .employee-form {
-    background: white;
+    background: var(--text-white);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 24px;
+    padding: var(--spacing-medium);
   }
 
   .form-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
-    padding-bottom: 16px;
+    margin-bottom: var(--spacing-medium);
+    padding-bottom: var(--spacing-small);
     border-bottom: 1px solid var(--border-color);
   }
 
   h2 {
-    font-size: 24px;
-    color: var(--text-gray);
+    font-size: var(--font-large);
+    color: var(--text-color);
     margin: 0;
     font-weight: 500;
   }
@@ -43,7 +38,7 @@ export default css`
   .form-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    gap: var(--spacing-large);
   }
 
   .form-group {
@@ -52,19 +47,19 @@ export default css`
   }
 
   label {
-    font-size: 14px;
-    color: var(--text-gray);
-    margin-bottom: 8px;
+    font-size: var(--font-small);
+    color: var(--text-color);
+    margin-bottom: var(--spacing-small);
   }
 
   input,
   select {
     height: 15px;
-    padding: 8px 12px;
+    padding: var(--spacing-small) var(--spacing-medium);
     border: 1px solid var(--border-color);
     border-radius: 4px;
-    font-size: 14px;
-    color: #333;
+    font-size: var(--font-small);
+    color: var(--text-black);
     transition: border-color 0.2s;
   }
 
@@ -75,7 +70,7 @@ export default css`
   }
 
   select {
-    background-color: white;
+    background-color: var(--text-white);
     cursor: pointer;
     height: 35px;
   }
@@ -84,9 +79,9 @@ export default css`
     grid-column: 1 / -1;
     display: flex;
     justify-content: flex-end;
-    gap: 16px;
-    margin-top: 24px;
-    padding-top: 24px;
+    gap: var(--spacing-medium);
+    margin-top: var(--spacing-medium);
+    padding-top: var(--spacing-medium);
     border-top: 1px solid var(--border-color);
   }
 
@@ -95,9 +90,9 @@ export default css`
   }
 
   button {
-    padding: 10px 24px;
+    padding: var(--spacing-small) var(--spacing-large);
     border-radius: 4px;
-    font-size: 14px;
+    font-size: var(--font-small);
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s;
@@ -105,37 +100,40 @@ export default css`
 
   .btn-primary {
     background-color: var(--primary-color);
-    color: white;
+    color: var(--text-white);
     border: none;
   }
 
   .btn-primary:hover {
-    background-color: #ff7a33;
+    background-color: var(--primary-hover-color);
   }
 
   .btn-secondary {
-    background-color: white;
+    background-color: var(--text-white);
     color: var(--primary-blue-color);
     border: 1px solid var(--primary-blue-color);
   }
 
   .btn-secondary:hover {
-    background-color: #f5f5f5;
-  }
+
+  color: var(--text-white);
+  background-color: var(--primary-blue-color);
+  border: 1px solid var(--primary-blue-color);
+}
 
   @media (max-width: 768px) {
     .container {
-      padding: 16px;
-      margin: 16px auto;
+      padding: var(--spacing-small);
+      margin: var(--spacing-small) auto;
     }
 
     .form-grid {
       grid-template-columns: 1fr;
-      gap: 16px;
+      gap: var(--spacing-medium);
     }
 
     .employee-form {
-      padding: 16px;
+      padding: var(--spacing-small);
     }
 
     .actions {

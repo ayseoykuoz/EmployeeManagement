@@ -1,0 +1,43 @@
+:root {
+    --primary-color: #ff6200;
+    --primary-hover-color: #ff7a33;
+    --primary-blue-color: #172b53;
+    --not-active-color: #f4b88e;
+    --text-color: #666666;
+    --text-black: #000000;
+    --text-white: #ffffff;
+    --background-color: #f8f8f8;
+    --border-color: #eeeeee;
+    --error-color: #dc3545;
+    --font-family: Arial, sans-serif;
+  
+    --font-small: 12px;
+    --font-medium: 16px;
+    --font-large: 24px;
+  
+    --spacing-small: 8px;
+    --spacing-medium: 16px;
+    --spacing-large: 24px;
+    --dialog-width: 450px;
+  }
+
+html,
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-size: var(--font-small);
+}
+
+#app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color);
+  }
+
+
+
