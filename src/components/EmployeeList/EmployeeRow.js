@@ -5,7 +5,6 @@ class EmployeeRow extends LitElement {
     employee: { type: Object },
   };
 
-
   render() {
     const {
       firstName,

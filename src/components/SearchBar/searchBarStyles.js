@@ -9,14 +9,14 @@ export default css`
   .search-container {
     position: relative;
     width: 100%;
-    max-width: 800px; 
-    margin: 0 auto; 
+    max-width: 800px;
+    margin: 0 auto;
   }
 
   .search-input {
-    width: calc(100% - var(--spacing-small)); 
+    width: calc(100% - var(--spacing-small));
     padding: var(--spacing-medium);
-    padding-left: calc(var(--spacing-medium) + 32px); 
+    padding-left: calc(var(--spacing-medium) + 32px);
     background-color: var(--text-white);
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -24,7 +24,7 @@ export default css`
     color: var(--text-color);
     transition: all 0.2s ease;
     outline: none;
-    margin-right: var(--spacing-small); 
+    margin-right: var(--spacing-small);
     box-sizing: border-box;
   }
 

@@ -115,11 +115,10 @@ export default css`
   }
 
   .btn-secondary:hover {
-
-  color: var(--text-white);
-  background-color: var(--primary-blue-color);
-  border: 1px solid var(--primary-blue-color);
-}
+    color: var(--text-white);
+    background-color: var(--primary-blue-color);
+    border: 1px solid var(--primary-blue-color);
+  }
 
   @media (max-width: 768px) {
     .container {

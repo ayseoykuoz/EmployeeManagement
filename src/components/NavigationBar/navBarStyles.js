@@ -1,8 +1,6 @@
 import { css } from "lit";
 
 export default css`
-
-
   .navbar {
     background-color: var(--text-white);
     border-bottom: 1px solid var(--border-color);

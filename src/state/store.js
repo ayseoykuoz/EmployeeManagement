@@ -2,7 +2,8 @@ import { createStore } from "redux";
 import { employeeData } from "../utils/employeeData";
 
 const initialState = {
-  employees: employeeData,
+  employees: employeeData, // dummy data
+  // employees: [], // default state
 };
 
 // Action types

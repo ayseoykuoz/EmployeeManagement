@@ -10,7 +10,7 @@ describe("EmployeeForm", () => {
   beforeEach(async () => {
     store.dispatch({ type: "RESET_EMPLOYEES", payload: [] });
     el = await fixture(html`<employee-form></employee-form>`);
-    el.disableNavigation = true; 
+    el.disableNavigation = true;
   });
 
   afterEach(() => {
@@ -40,7 +40,7 @@ describe("EmployeeForm", () => {
     const inputFields = el.shadowRoot.querySelectorAll(
       ".form-group input, .form-group select"
     );
-    expect(inputFields.length).to.equal(8); 
+    expect(inputFields.length).to.equal(8);
 
     const labels = el.shadowRoot.querySelectorAll(".form-group label");
     expect(labels.length).to.equal(8);
@@ -97,7 +97,7 @@ describe("EmployeeForm", () => {
     el.employee.lastName = "User";
     el.employee.email = "valid.user@example.com";
     el.employee.phone = "+1234567890";
-    el.errorMessages = {}; 
+    el.errorMessages = {};
 
     expect(el._isFormValid()).to.be.true;
   });
@@ -139,7 +139,7 @@ describe("EmployeeForm", () => {
     el.employee.email = "jane.doe@example.com";
     el.employee.phone = "+1234567890";
 
-    el.errorMessages = {}; 
+    el.errorMessages = {};
     await el.updateComplete;
 
     const form = el.shadowRoot.querySelector("form");

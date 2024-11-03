@@ -2,7 +2,7 @@ import { LitElement, html, css } from "lit";
 import { store, deleteEmployee } from "../../state/store.js";
 import { t } from "../../localization/localization.js";
 import "../../components/EmployeeList/EmployeeRow.js";
-import "../../components/EmployeeList/PaginationElement.js";
+import "../../components/Pagination/PaginationElement.js";
 import "../../components/SearchBar/SearchBar.js";
 import "../EmployeeForm/EmployeeForm.js";
 import "../../components/NavigationBar/NavBar.js";
@@ -35,7 +35,7 @@ class EmployeeList extends LitElement {
 
     this.unsubscribe = store.subscribe(() => {
       this.employees = store.getState().employees;
-      this.requestUpdate(); 
+      this.requestUpdate();
     });
   }
 
@@ -47,7 +47,7 @@ class EmployeeList extends LitElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    if (this.unsubscribe) this.unsubscribe(); 
+    if (this.unsubscribe) this.unsubscribe();
     document.removeEventListener("language-changed", this._updateLocalization);
   }
 
@@ -258,11 +258,15 @@ class EmployeeList extends LitElement {
                   </div>
                   <div class="card-field">
                     <span class="field-label">${t("dateOfBirth")}</span>
-                    <span class="field-value">${formatDate(employee.dateOfBirth)}</span>
+                    <span class="field-value"
+                      >${formatDate(employee.dateOfBirth)}</span
+                    >
                   </div>
                   <div class="card-field">
                     <span class="field-label">${t("phone")}</span>
-                    <span class="field-value">${formatPhoneNumber(employee.phone)}</span>
+                    <span class="field-value"
+                      >${formatPhoneNumber(employee.phone)}</span
+                    >
                   </div>
                   <div class="card-field">
                     <span class="field-label">${t("email")}</span>
@@ -400,15 +404,21 @@ class EmployeeList extends LitElement {
             </div>
             <div class="card-field">
               <span class="field-label">${t("dateOfEmployment")}</span>
-              <span class="field-value">${formatDate(employee.dateOfEmployment)}</span>
+              <span class="field-value"
+                >${formatDate(employee.dateOfEmployment)}</span
+              >
             </div>
             <div class="card-field">
               <span class="field-label">${t("dateOfBirth")}</span>
-              <span class="field-value">${formatDate(employee.dateOfBirth)}</span>
+              <span class="field-value"
+                >${formatDate(employee.dateOfBirth)}</span
+              >
             </div>
             <div class="card-field">
               <span class="field-label">${t("phone")}</span>
-              <span class="field-value">${formatPhoneNumber(employee.phone)}</span>
+              <span class="field-value"
+                >${formatPhoneNumber(employee.phone)}</span
+              >
             </div>
             <div class="card-field">
               <span class="field-label">${t("email")}</span>
@@ -439,12 +449,12 @@ class EmployeeList extends LitElement {
 
   _navigateToEdit(id) {
     window.history.pushState({}, "", `/edit/${id}`);
-    window.dispatchEvent(new Event("popstate")); 
+    window.dispatchEvent(new Event("popstate"));
   }
 
   handleSearch(event) {
     this.searchQuery = event.detail.query.toLowerCase();
-    this.currentPage = 1; 
+    this.currentPage = 1;
   }
 
   handlePageChange(event) {

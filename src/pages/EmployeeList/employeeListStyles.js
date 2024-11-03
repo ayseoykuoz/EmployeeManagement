@@ -12,6 +12,26 @@ export default css`
     margin: 0 auto;
     padding: var(--spacing-large);
   }
+  .no-data-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-large);
+    margin: var(--spacing-large) 0;
+    font-size: var(--font-medium);
+    font-weight: 500;
+    color: var(--text-gray);
+    background-color: #f9fafb; /* Light gray background */
+    border: 1px solid #e5e7eb; /* Soft border for definition */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .no-data-message::before {
+    content: "🔍"; /* Placeholder icon */
+    font-size: 24px;
+    margin-right: var(--spacing-small);
+  }
 
   .list-header {
     display: flex;
@@ -98,6 +118,7 @@ export default css`
   td {
     padding: var(--spacing-medium);
     text-align: left;
+    text-wrap: nowrap;
   }
 
   th {
@@ -284,7 +305,9 @@ export default css`
       padding: 7px 10px;
     }
 
-    .table-container.table {
+    .table-container.table,
+    .table-container.grid,
+    .view-controls {
       display: none;
     }
 

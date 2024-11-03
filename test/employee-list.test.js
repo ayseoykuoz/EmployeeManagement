@@ -6,7 +6,7 @@ import { loadLanguage, t } from "../src/localization/localization.js";
 
 describe("EmployeeList", () => {
   before(async () => {
-    await loadLanguage("en"); 
+    await loadLanguage("en");
   });
 
   let el;
@@ -166,7 +166,7 @@ describe("EmployeeList", () => {
     await loadLanguage("tr");
     await el.updateComplete;
 
-    expect(titleElement.textContent.trim()).to.equal("Çalışan Listesi"); 
+    expect(titleElement.textContent.trim()).to.equal("Çalışan Listesi");
   });
 
   it("unsubscribes from store updates on disconnect", () => {

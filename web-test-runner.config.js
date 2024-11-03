@@ -16,7 +16,7 @@ export default {
   ],
   coverage: true, // Enable coverage
   coverageConfig: {
-    reportDir: "coverage",  
+    reportDir: "coverage",
     exclude: ["**/test/**/*", "**/node_modules/**/*"],
     threshold: {
       statements: 85,
