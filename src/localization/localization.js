@@ -41,7 +41,7 @@ export function t(key, replacements = {}) {
   let translation = languageTranslations[key];
 
   if (!translation) {
-    return `Missing translation: ${key}`;
+    return key;
   }
 
   for (const [placeholder, value] of Object.entries(replacements)) {

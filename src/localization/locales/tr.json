@@ -4,6 +4,7 @@
   "welcome": "Hoş Geldiniz",
   "confirmationDialogTitle": "Emin misiniz?",
   "confirmationDialogMessage": "Seçilen Çalışan kaydı {firstName} {lastName} silinecek",
+  "confirmationEditMessage": "Çalışan kaydını güncellemek istediğinizden emin misiniz?",
   "confirmationDialogConfirmText": "Devam",
   "confirmationDialogCancelText": "İptal",
   "searchPlaceholder": "Çalışanları isim, departman, pozisyon ile ara...",

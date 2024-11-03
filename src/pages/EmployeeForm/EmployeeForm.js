@@ -9,6 +9,8 @@ class EmployeeForm extends LitElement {
     employee: { type: Object },
     isEditing: { type: Boolean },
     errorMessages: { type: Object },
+    isFormEdited: { type: Boolean },
+    showConfirmationDialog: { type: Boolean },
   };
 
   constructor() {
@@ -26,6 +28,8 @@ class EmployeeForm extends LitElement {
     };
     this.isEditing = false;
     this.errorMessages = {};
+    this.isFormEdited = false;
+    this.showConfirmationDialog = false;
   }
 
   connectedCallback() {
@@ -107,6 +111,18 @@ class EmployeeForm extends LitElement {
           </form>
         </div>
       </div>
+
+      <!-- Confirmation Dialog -->
+      ${this.showConfirmationDialog
+        ? html`
+            <confirmation-dialog
+              .open="${this.showConfirmationDialog}"
+              .message="${t("confirmationEditMessage")}"
+              @dialog-confirmed="${this._handleDialogConfirmed}"
+              @dialog-closed="${this._handleDialogClosed}"
+            ></confirmation-dialog>
+          `
+        : ""}
     `;
   }
 
@@ -142,7 +158,6 @@ class EmployeeForm extends LitElement {
           title="${t("phoneNumberTitle")}"
           required
         />
-
         ${this.errorMessages.phone
           ? html`<span class="error-message">${this.errorMessages.phone}</span>`
           : ""}
@@ -205,6 +220,7 @@ class EmployeeForm extends LitElement {
 
   _updateField(field, event) {
     this.employee = { ...this.employee, [field]: event.target.value };
+    this.isFormEdited = true;
     this._validateField(field, event.target.value);
   }
 
@@ -215,18 +231,31 @@ class EmployeeForm extends LitElement {
 
   _handleSubmit(event) {
     event.preventDefault();
-
-    console.log("Starting validation for form submission");
     this._validateField("department", this.employee.department || "");
     this._validateField("position", this.employee.position || "");
 
-    if (this._isFormValid()) {
-      const action = this.isEditing ? editEmployee : addEmployee;
-      store.dispatch(
-        action({ ...this.employee, id: this.employee.id || Date.now() })
-      );
-      this._navigateToList();
+    if (this.isEditing && this.isFormEdited) {
+      this.showConfirmationDialog = true;
+    } else if (this._isFormValid()) {
+      this._submitForm();
     }
+  }
+
+  _submitForm() {
+    const action = this.isEditing ? editEmployee : addEmployee;
+    store.dispatch(
+      action({ ...this.employee, id: this.employee.id || Date.now() })
+    );
+    this._navigateToList();
+  }
+
+  _handleDialogConfirmed() {
+    this.showConfirmationDialog = false;
+    this._submitForm();
+  }
+
+  _handleDialogClosed() {
+    this.showConfirmationDialog = false;
   }
 
   _isFormValid() {
