@@ -48,9 +48,9 @@ export class NavBar extends LitElement {
   }
 
   _getFlagUrl() {
-    if (this.currentLanguage === "en") {
+    if (this.currentLanguage === "tr") {
       return "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg";
-    } else if (this.currentLanguage === "tr") {
+    } else if (this.currentLanguage === "en") {
       return "https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg";
     }
     return "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg";

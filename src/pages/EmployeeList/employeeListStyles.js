@@ -21,14 +21,14 @@ export default css`
     font-size: var(--font-medium);
     font-weight: 500;
     color: var(--text-gray);
-    background-color: #f9fafb; /* Light gray background */
-    border: 1px solid #e5e7eb; /* Soft border for definition */
+    background-color: #f9fafb; 
+    border: 1px solid #e5e7eb; 
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   }
 
   .no-data-message::before {
-    content: "🔍"; /* Placeholder icon */
+    content: "🔍"; 
     font-size: 24px;
     margin-right: var(--spacing-small);
   }
@@ -57,12 +57,6 @@ export default css`
     box-sizing: border-box;
   }
 
-  search-bar {
-    max-width: 600px;
-    margin: 0 auto;
-    display: block;
-    width: 100%;
-  }
 
   .card-view {
     display: none;
@@ -309,10 +303,6 @@ export default css`
     .table-container.grid,
     .view-controls {
       display: none;
-    }
-
-    search-bar {
-      max-width: 100%;
     }
   }
 

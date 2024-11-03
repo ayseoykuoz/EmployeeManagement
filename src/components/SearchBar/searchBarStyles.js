@@ -9,12 +9,11 @@ export default css`
   .search-container {
     position: relative;
     width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
+    margin:0px;
   }
 
   .search-input {
-    width: calc(100% - var(--spacing-small));
+    width: 100%;  
     padding: var(--spacing-medium);
     padding-left: calc(var(--spacing-medium) + 32px);
     background-color: var(--text-white);
@@ -24,7 +23,6 @@ export default css`
     color: var(--text-color);
     transition: all 0.2s ease;
     outline: none;
-    margin-right: var(--spacing-small);
     box-sizing: border-box;
   }
 
@@ -84,9 +82,4 @@ export default css`
     display: none;
   }
 
-  @media (max-width: 840px) {
-    .search-container {
-      max-width: 100%;
-    }
-  }
 `;
