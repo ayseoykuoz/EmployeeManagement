@@ -13,7 +13,7 @@ Locate the following line in the initialState object:
 
 
 employees: employeeData, // dummy data
-// employees: [], // default state
+employees: [], // default state
 
 Using dummy data is helpful to preview the application's UI and functionality without manually adding employee records.
 
